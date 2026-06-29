@@ -1,77 +1,120 @@
-# G8_Grafos_EDA2-2026.1
+# Buscador de Drinks — Grafo de Ingredientes (BFS)
 
-Grafo bipartido de drinks e ingredientes, com BFS pra descobrir receitas,
-o que dá pra fazer com os ingredientes que você tem, e drinks relacionados.
+Número da Lista: Trabalho 4<br>
+Conteúdo da Disciplina: Grafos<br>
 
-## Estrutura
+## Alunos
 
+| Matrícula | Aluno |
+| -- | -- |
+| 231026385 | Igor Veras Daniel |
+| 231026483 | Maria Eduarda de Amorim Galdino |
+
+
+## Link do Vídeo
+[Assistir ao vídeo](<LINK_DO_VIDEO>)
+
+## Sobre
+Sistema de busca de drinks em linha de comando que modela ingredientes e
+drinks como um **grafo bipartido** e usa **Busca em Largura (BFS)** para
+responder a três perguntas: qual a receita de um drink, quais drinks dá
+pra fazer com os ingredientes disponíveis, e quais outros drinks estão
+"relacionados" a um drink — ou seja, alcançáveis passando por
+ingredientes em comum.
+
+O grafo tem dois tipos de nó, `drink` e `ingredient`, e uma aresta liga
+um drink a cada ingrediente que ele usa. Ingredientes compartilhados
+entre receitas (como limão, presente em quase todas as do dataset)
+geram um único nó com várias arestas — é justamente essa estrutura que
+torna o BFS interessante: navegar de um drink para outro nunca é um
+salto direto, é sempre uma travessia pelo grafo.
+
+O trabalho foi dividido em duas partes: dados e estrutura do grafo de
+um lado, e algoritmo de busca + interface de linha de comando do
+outro.
+
+## Screenshots
+
+### Receita de um drink
+![Screenshot 1](img/receita.png)
+### Drinks relacionados
+![Screenshot 2](img/relacionados.png)
+
+
+## Instalação
+Linguagem: Python 3.10+<br>
+Framework: Nenhum (apenas biblioteca padrão)<br>
+```bash
+git clone https://github.com/eda2-2026/G8_Grafos_EDA2-2026.1.git
+python3 main.py receita "Mojito"
+```
+## Uso
+O programa funciona por subcomandos, sem menu interativo:
+```
+$ python3 main.py --help
+usage: drinkgraph [-h] [--data DATA] {receita,posso-fazer,relacionados} ...
+
+Busca de drinks em um grafo de ingredientes.
+
+positional arguments:
+  {receita,posso-fazer,relacionados}
+    receita             Mostra a receita de um drink
+    posso-fazer         Lista drinks possíveis com os ingredientes informados
+    relacionados        Lista drinks relacionados via ingredientes compartilhados
+```
+**[1] Receita** — faz um BFS de profundidade 1 a partir do nó do drink;
+os vizinhos encontrados já são os ingredientes da receita.
+```
+$ python3 main.py receita "Mojito"
+Receita de Mojito:
+  - rum
+  - hortelã
+  - limão
+  - açúcar
+  - água com gás
+```
+**[2] Posso fazer** — dado os ingredientes disponíveis, retorna os
+drinks cuja receita está totalmente contida nesse conjunto.
+```
+$ python3 main.py posso-fazer "rum,limão,açúcar"
+Você pode fazer:
+  - Daiquiri
+```
+**[3] Relacionados** — faz um BFS com profundidade configurável a
+partir do drink, filtrando só os nós do tipo `drink` no resultado. É
+aqui que o efeito dos ingredientes compartilhados fica mais visível:
+com profundidade 2, basta um ingrediente em comum (como o limão) pra
+conectar dois drinks.
+```
+$ python3 main.py relacionados "Mojito" --profundidade 2
+Drinks relacionados a Mojito:
+  - Caipirinha
+  - Cuba Libre
+  - Daiquiri
+  - Gin Tônica
+```
+> A ordem exata dos itens pode variar entre execuções, já que os
+> vizinhos de cada nó são guardados em um `set`.
+---
+## Outros
+Estrutura de arquivos:
 ```
 drinkgraph_project/
+├── main.py                # ponto de entrada da CLI
 ├── data/
-│   └── drinks.json        # dataset de exemplo (5 drinks)
+│   └── drinks.json        # dataset de drinks e ingredientes
 ├── drinkgraph/
-│   ├── graph.py            # [Pessoa A] estrutura do grafo
-│   ├── loader.py           # [Pessoa A] lê o JSON e constrói o grafo
-│   ├── search.py           # [Pessoa B] BFS + funções de busca
-│   └── cli.py               # [Pessoa B] interface de linha de comando
+│   ├── graph.py           # estrutura do grafo bipartido
+│   ├── loader.py          # leitura do JSON e construção do grafo
+│   ├── search.py          # BFS genérico + funções de busca específicas
+│   └── cli.py             # interface de linha de comando (argparse)
 ├── tests/
-│   ├── test_graph.py        # testes da Pessoa A
-│   └── test_search.py       # testes da Pessoa B
-├── main.py                  # ponto de entrada da CLI
-└── conftest.py               # vazio, só pra o pytest achar o pacote
+│   ├── test_graph.py
+│   └── test_search.py
+└── README.md
 ```
-
-Nenhuma dependência externa é necessária pro código em si (só a
-biblioteca padrão do Python). Pra rodar os testes, instale o `pytest`:
-
-```bash
-pip install pytest
-```
-
-## Como rodar
-
-```bash
-python main.py receita "Mojito"
-python main.py posso-fazer "rum,limão,açúcar"
-python main.py relacionados "Mojito" --profundidade 2
-```
-
-## Como rodar os testes
-
-```bash
-pytest
-```
-
-Os testes de `test_graph.py` já devem passar de cara. Os de
-`test_search.py` testam o BFS genérico (que já está implementado) e têm
-um gabarito comentado pras três funções que ainda faltam implementar.
-
-## O que falta implementar
-
-Em `drinkgraph/search.py`, três funções estão com `NotImplementedError`:
-
-- `receita_do_drink(graph, nome_drink)`
-- `o_que_posso_fazer(graph, ingredientes_disponiveis)`
-- `drinks_relacionados(graph, nome_drink, profundidade)`
-
-Cada uma tem uma dica no docstring de como usar `bfs()` e os métodos do
-`Graph` pra implementar. Depois de implementar, descomentem/ajustem os
-testes correspondentes em `tests/test_search.py`.
-
-## Divisão de tarefas
-
-**Pessoa A — dados e grafo**
-- `drinkgraph/graph.py`, `drinkgraph/loader.py`
-- Ampliar `data/drinks.json` com mais drinks reais
-- `tests/test_graph.py`
-
-**Pessoa B — algoritmo e CLI**
-- Implementar as 3 funções em `drinkgraph/search.py`
-- `drinkgraph/cli.py` (já está funcional, mas sintam-se livres pra
-  melhorar a formatação da saída, adicionar comandos, etc.)
-- `tests/test_search.py`
-
-O contrato entre os dois lados é a classe `Graph` (`add_node`,
-`add_edge`, `neighbors`, `get_node`, `has_node`, `nodes_by_type`,
-`find_id`). Se alguém precisar mudar essa interface, é melhor avisar o
-outro antes.
+O nó de cada drink/ingrediente é identificado pelo nome normalizado em
+minúsculas, o que evita duplicar nós quando o mesmo ingrediente aparece
+com grafias diferentes (ex.: "Limão" e "limão"). O dataset usa uma
+lista fixa de 5 drinks para facilitar testes e reprodutibilidade, mas
+pode ser facilmente expandido editando `data/drinks.json`.
