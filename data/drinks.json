@@ -1,0 +1,29 @@
+{
+  "drinks": [
+    {
+      "nome": "Mojito",
+      "ingredientes": ["rum", "hortelã", "limão", "açúcar", "água com gás"],
+      "instrucoes": "Macere a hortelã com o açúcar e o limão, adicione o rum e complete com água com gás."
+    },
+    {
+      "nome": "Caipirinha",
+      "ingredientes": ["cachaça", "limão", "açúcar"],
+      "instrucoes": "Macere o limão com o açúcar, adicione a cachaça e gelo."
+    },
+    {
+      "nome": "Cuba Libre",
+      "ingredientes": ["rum", "refrigerante de cola", "limão"],
+      "instrucoes": "Sirva o rum com gelo, complete com refrigerante de cola e finalize com limão."
+    },
+    {
+      "nome": "Daiquiri",
+      "ingredientes": ["rum", "limão", "açúcar"],
+      "instrucoes": "Bata o rum, o limão e o açúcar com gelo."
+    },
+    {
+      "nome": "Gin Tônica",
+      "ingredientes": ["gin", "água tônica", "limão"],
+      "instrucoes": "Sirva o gin com gelo e complete com água tônica, finalize com limão."
+    }
+  ]
+}
