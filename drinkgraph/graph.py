@@ -70,10 +70,65 @@ class Graph:
         """Lista todos os node_ids de um tipo ('drink' ou 'ingredient')."""
         return [nid for nid, n in self._nodes.items() if n["type"] == node_type]
 
+    def degree(self, node_id: str) -> int:
+        """Retorna o grau (número de arestas) de um nó."""
+        if node_id not in self._nodes:
+            raise KeyError(f"Nó não encontrado: {node_id}")
+        return len(self._adj[node_id])
+
+    def all_nodes(self) -> list[str]:
+        """Retorna todos os node_ids do grafo."""
+        return list(self._nodes.keys())
+
+    def all_edges(self) -> list[tuple[str, str]]:
+        """
+        Retorna todas as arestas como lista de tuplas (node_a, node_b).
+        Cada aresta aparece apenas uma vez (a < b lexicograficamente).
+        """
+        seen: set[tuple] = set()
+        edges = []
+        for node_a, vizinhos in self._adj.items():
+            for node_b in vizinhos:
+                par = (min(node_a, node_b), max(node_a, node_b))
+                if par not in seen:
+                    seen.add(par)
+                    edges.append(par)
+        return edges
+
+    def is_connected(self) -> bool:
+        """
+        Verifica se o grafo é conexo (todos os nós são alcançáveis a partir
+        de qualquer nó). Retorna True para grafos vazios.
+        """
+        if not self._nodes:
+            return True
+        start = next(iter(self._nodes))
+        visitados = {start}
+        fila = [start]
+        while fila:
+            atual = fila.pop()
+            for vizinho in self._adj[atual]:
+                if vizinho not in visitados:
+                    visitados.add(vizinho)
+                    fila.append(vizinho)
+        return len(visitados) == len(self._nodes)
+
+    def ingredientes_mais_usados(self, top_n: int = 10) -> list[tuple[str, int]]:
+        """
+        Retorna os top_n ingredientes mais usados (por grau/quantidade de drinks),
+        como lista de tuplas (nome_ingrediente, quantidade_de_drinks).
+        """
+        contagens = [
+            (self._nodes[nid]["name"], len(self._adj[nid]))
+            for nid in self.nodes_by_type("ingredient")
+        ]
+        return sorted(contagens, key=lambda x: -x[1])[:top_n]
+
     def __len__(self) -> int:
         return len(self._nodes)
 
     def __repr__(self) -> str:
         n_drinks = len(self.nodes_by_type("drink"))
         n_ing = len(self.nodes_by_type("ingredient"))
-        return f"Graph(drinks={n_drinks}, ingredients={n_ing})"
+        n_edges = len(self.all_edges())
+        return f"Graph(drinks={n_drinks}, ingredients={n_ing}, arestas={n_edges})"

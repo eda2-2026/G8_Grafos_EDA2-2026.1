@@ -24,6 +24,131 @@
       "nome": "Gin Tônica",
       "ingredientes": ["gin", "água tônica", "limão"],
       "instrucoes": "Sirva o gin com gelo e complete com água tônica, finalize com limão."
+    },
+    {
+      "nome": "Margarita",
+      "ingredientes": ["tequila", "licor de laranja", "limão", "sal"],
+      "instrucoes": "Umedeça a borda do copo com limão e passe no sal. Bata a tequila, o licor de laranja e o limão com gelo."
+    },
+    {
+      "nome": "Cosmopolitan",
+      "ingredientes": ["vodka", "licor de laranja", "suco de cranberry", "limão"],
+      "instrucoes": "Bata todos os ingredientes com gelo e sirva numa taça de martini."
+    },
+    {
+      "nome": "Piña Colada",
+      "ingredientes": ["rum", "leite de coco", "suco de abacaxi"],
+      "instrucoes": "Bata o rum, o leite de coco e o suco de abacaxi com gelo até obter uma mistura cremosa."
+    },
+    {
+      "nome": "Sex on the Beach",
+      "ingredientes": ["vodka", "licor de pêssego", "suco de laranja", "suco de cranberry"],
+      "instrucoes": "Misture todos os ingredientes com gelo em um copo alto."
+    },
+    {
+      "nome": "Tequila Sunrise",
+      "ingredientes": ["tequila", "suco de laranja", "grenadine"],
+      "instrucoes": "Coloque a tequila e o suco de laranja num copo com gelo, depois adicione a grenadine devagar para criar o efeito de nascer do sol."
+    },
+    {
+      "nome": "Negroni",
+      "ingredientes": ["gin", "vermute rosso", "campari"],
+      "instrucoes": "Misture todos os ingredientes com gelo numa taça e decore com raspas de laranja."
+    },
+    {
+      "nome": "Aperol Spritz",
+      "ingredientes": ["aperol", "prosecco", "água com gás"],
+      "instrucoes": "Numa taça com gelo, misture o aperol e o prosecco, complete com água com gás e decore com uma fatia de laranja."
+    },
+    {
+      "nome": "Moscow Mule",
+      "ingredientes": ["vodka", "cerveja de gengibre", "limão"],
+      "instrucoes": "Sirva a vodka num caneco de cobre com gelo, adicione o suco de limão e complete com a cerveja de gengibre."
+    },
+    {
+      "nome": "Caipiroska",
+      "ingredientes": ["vodka", "limão", "açúcar"],
+      "instrucoes": "Macere o limão com o açúcar, adicione a vodka e gelo."
+    },
+    {
+      "nome": "Americano",
+      "ingredientes": ["campari", "vermute rosso", "água com gás"],
+      "instrucoes": "Coloque gelo num copo, adicione o campari e o vermute, complete com água com gás e decore com fatia de laranja."
+    },
+    {
+      "nome": "Whisky Sour",
+      "ingredientes": ["whisky", "limão", "açúcar", "clara de ovo"],
+      "instrucoes": "Bata o whisky, o limão, o açúcar e a clara de ovo sem gelo (dry shake), depois bata com gelo e coe."
+    },
+    {
+      "nome": "Old Fashioned",
+      "ingredientes": ["whisky", "açúcar", "bitters", "água"],
+      "instrucoes": "Dissolva o açúcar com o bitters e a água, adicione o whisky e gelo, mexa e decore com casca de laranja."
+    },
+    {
+      "nome": "Sangria",
+      "ingredientes": ["vinho tinto", "suco de laranja", "limão", "açúcar", "água com gás"],
+      "instrucoes": "Misture o vinho, o suco de laranja, o limão e o açúcar. Deixe na geladeira por 1h e complete com água com gás na hora de servir."
+    },
+    {
+      "nome": "Kir Royale",
+      "ingredientes": ["champanhe", "licor de cassis"],
+      "instrucoes": "Adicione o licor de cassis no fundo da taça e complete com o champanhe gelado."
+    },
+    {
+      "nome": "Mimosa",
+      "ingredientes": ["champanhe", "suco de laranja"],
+      "instrucoes": "Coloque o suco de laranja gelado numa taça de champanhe e complete com o champanhe."
+    },
+    {
+      "nome": "Bellini",
+      "ingredientes": ["prosecco", "purê de pêssego"],
+      "instrucoes": "Coloque o purê de pêssego numa taça e complete com o prosecco gelado."
+    },
+    {
+      "nome": "Long Island Iced Tea",
+      "ingredientes": ["vodka", "rum", "tequila", "gin", "licor de laranja", "limão", "refrigerante de cola"],
+      "instrucoes": "Bata todos os destilados, o licor e o limão com gelo. Sirva num copo alto e complete com refrigerante de cola."
+    },
+    {
+      "nome": "Mai Tai",
+      "ingredientes": ["rum", "licor de laranja", "suco de limão", "xarope de orgeat"],
+      "instrucoes": "Bata todos os ingredientes com gelo e decore com uma fatia de abacaxi e cereja."
+    },
+    {
+      "nome": "Dark and Stormy",
+      "ingredientes": ["rum escuro", "cerveja de gengibre", "limão"],
+      "instrucoes": "Coloque gelo num copo alto, adicione o rum escuro e complete com a cerveja de gengibre. Esprema o limão por cima."
+    },
+    {
+      "nome": "Clover Club",
+      "ingredientes": ["gin", "limão", "grenadine", "clara de ovo"],
+      "instrucoes": "Bata todos os ingredientes sem gelo (dry shake) e depois bata com gelo. Coe e sirva numa taça de coquetel."
+    },
+    {
+      "nome": "Gimlet",
+      "ingredientes": ["gin", "suco de limão", "xarope de açúcar"],
+      "instrucoes": "Bata o gin, o suco de limão e o xarope com gelo e coe numa taça de coquetel."
+    },
+    {
+      "nome": "Aviation",
+      "ingredientes": ["gin", "licor maraschino", "crème de violette", "limão"],
+      "instrucoes": "Bata todos os ingredientes com gelo e coe numa taça de coquetel."
+    },
+    {
+      "nome": "Tom Collins",
+      "ingredientes": ["gin", "limão", "açúcar", "água com gás"],
+      "instrucoes": "Bata o gin, o limão e o açúcar com gelo. Sirva num copo alto e complete com água com gás."
+    },
+    {
+      "nome": "Spritz Veneziano",
+      "ingredientes": ["prosecco", "aperol", "água com gás"],
+      "instrucoes": "Numa taça com bastante gelo, misture o prosecco e o aperol e complete com água com gás. Decore com uma fatia de laranja."
+    },
+    {
+      "nome": "Caipivodka de Maracujá",
+      "ingredientes": ["vodka", "polpa de maracujá", "limão", "açúcar"],
+      "instrucoes": "Macere o limão com o açúcar, adicione a polpa de maracujá e a vodka, misture bem com gelo."
     }
   ]
 }
