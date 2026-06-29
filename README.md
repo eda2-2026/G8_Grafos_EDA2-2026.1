@@ -12,7 +12,7 @@ Conteúdo da Disciplina: Grafos<br>
 
 
 ## Link do Vídeo
-[Assistir ao vídeo](<LINK_DO_VIDEO>)
+[Assistir ao vídeo](<https://youtu.be/q_Gwcxm6jDM>)
 
 ## Sobre
 Sistema de busca de drinks em linha de comando que modela ingredientes e
@@ -32,13 +32,6 @@ salto direto, é sempre uma travessia pelo grafo.
 O trabalho foi dividido em duas partes: dados e estrutura do grafo de
 um lado, e algoritmo de busca + interface de linha de comando do
 outro.
-
-## Screenshots
-
-### Receita de um drink
-![Screenshot 1](img/receita.png)
-### Drinks relacionados
-![Screenshot 2](img/relacionados.png)
 
 
 ## Instalação
