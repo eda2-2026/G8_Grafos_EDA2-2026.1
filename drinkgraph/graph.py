@@ -1,16 +1,3 @@
-"""
-RESPONSÁVEL: Pessoa A
-
-Estrutura de dados do grafo. É bipartido: nós do tipo "ingredient" e nós
-do tipo "drink". Uma aresta drink-ingrediente significa "esse drink usa
-esse ingrediente".
-
-Esse arquivo é o "contrato" entre as duas partes do projeto: a Pessoa B
-só deve depender dos métodos públicos abaixo (add_node, add_edge,
-neighbors, get_node, has_node, nodes_by_type, find_id). Se precisar de
-um método novo, combinem antes de mudar a interface.
-"""
-
 from typing import Optional
 
 
