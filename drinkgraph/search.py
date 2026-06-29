@@ -1,12 +1,8 @@
 """
-RESPONSÁVEL: Pessoa B
 
 BFS genérico sobre o Graph, e as funções de busca específicas do domínio
 (receita, "o que posso fazer", drinks relacionados).
 
-O bfs() abaixo já está implementado e testado (ver tests/test_search.py).
-As três funções no final estão como TODO -- é a parte mais interessante
-do projeto, faz sentido vocês implementarem.
 """
 
 from collections import deque
@@ -70,7 +66,18 @@ def receita_do_drink(graph, nome_drink: str) -> Optional[list[str]]:
     os ingredientes. Pra pegar o nome "bonito" de cada um, use
     graph.get_node(ing_id)["name"].
     """
-    raise NotImplementedError("TODO: Pessoa B")
+    drink_id = graph.find_id(nome_drink, "drink")
+    if drink_id is None:
+        return None
+
+    bfs_result = bfs(graph, drink_id, max_depth=1)
+    ingredientes = [
+        graph.get_node(node_id)["name"]
+        for node_id, meta in bfs_result.items()
+        if meta["distancia"] == 1
+        and graph.get_node(node_id)["type"] == "ingredient"
+    ]
+    return sorted(ingredientes, key=str.casefold)
 
 
 def o_que_posso_fazer(graph, ingredientes_disponiveis: list[str]) -> list[str]:
@@ -84,7 +91,23 @@ def o_que_posso_fazer(graph, ingredientes_disponiveis: list[str]) -> list[str]:
     cada vizinho (ingrediente) com esse set -- se todos os ingredientes
     do drink estiverem disponíveis, ele entra no resultado.
     """
-    raise NotImplementedError("TODO: Pessoa B")
+    disponiveis = {
+        ingrediente.strip().lower()
+        for ingrediente in ingredientes_disponiveis
+        if ingrediente and ingrediente.strip()
+    }
+
+    resultados = []
+    for drink_id in graph.nodes_by_type("drink"):
+        ingredientes = [
+            graph.get_node(ing_id)["name"].strip().lower()
+            for ing_id in graph.neighbors(drink_id)
+            if graph.get_node(ing_id)["type"] == "ingredient"
+        ]
+        if all(ingrediente in disponiveis for ingrediente in ingredientes):
+            resultados.append(graph.get_node(drink_id)["name"])
+
+    return sorted(resultados, key=str.casefold)
 
 
 def drinks_relacionados(graph, nome_drink: str, profundidade: int = 3) -> Optional[list[str]]:
@@ -97,4 +120,14 @@ def drinks_relacionados(graph, nome_drink: str, profundidade: int = 3) -> Option
     os node_ids cujo tipo é "drink" (graph.get_node(nid)["type"]) e que
     não sejam o próprio drink de origem.
     """
-    raise NotImplementedError("TODO: Pessoa B")
+    drink_id = graph.find_id(nome_drink, "drink")
+    if drink_id is None:
+        return None
+
+    bfs_result = bfs(graph, drink_id, max_depth=profundidade)
+    relacionados = [
+        graph.get_node(node_id)["name"]
+        for node_id, meta in bfs_result.items()
+        if node_id != drink_id and graph.get_node(node_id)["type"] == "drink"
+    ]
+    return sorted(relacionados, key=str.casefold)

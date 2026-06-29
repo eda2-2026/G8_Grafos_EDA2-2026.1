@@ -72,28 +72,26 @@ def test_reconstruir_caminho():
 # Substituam pelo @pytest.mark.skip / pelo teste real conforme for implementando.
 # ---------------------------------------------------------------------------
 
-def test_receita_do_drink_ainda_nao_implementada():
-    g, *_ = _grafo_exemplo()
-    with pytest.raises(NotImplementedError):
-        search.receita_do_drink(g, "Mojito")
+def test_receita_do_drink():
+    g, mojito, rum, limao, _, _ = _grafo_exemplo()
 
-    # Quando implementarem, o teste real deve ser algo como:
-    # assert set(search.receita_do_drink(g, "Mojito")) == {"rum", "limão"}
+    ingredientes = search.receita_do_drink(g, "Mojito")
+    assert set(ingredientes) == {"rum", "limão"}
 
-
-def test_o_que_posso_fazer_ainda_nao_implementada():
-    g, *_ = _grafo_exemplo()
-    with pytest.raises(NotImplementedError):
-        search.o_que_posso_fazer(g, ["rum", "limão"])
-
-    # Quando implementarem, o teste real deve ser algo como:
-    # assert search.o_que_posso_fazer(g, ["rum", "limão"]) == ["Mojito"]
+    assert search.receita_do_drink(g, "Nao Existe") is None
 
 
-def test_drinks_relacionados_ainda_nao_implementada():
-    g, *_ = _grafo_exemplo()
-    with pytest.raises(NotImplementedError):
-        search.drinks_relacionados(g, "Mojito")
+def test_o_que_posso_fazer():
+    g, mojito, rum, limao, caipirinha, cachaca = _grafo_exemplo()
 
-    # Quando implementarem, o teste real deve ser algo como:
-    # assert search.drinks_relacionados(g, "Mojito", profundidade=2) == ["Caipirinha"]
+    assert search.o_que_posso_fazer(g, ["rum", "limão"]) == ["Mojito"]
+    assert search.o_que_posso_fazer(g, ["cachaça", "limão"]) == ["Caipirinha"]
+    assert search.o_que_posso_fazer(g, ["limão"]) == []
+
+
+def test_drinks_relacionados():
+    g, mojito, rum, limao, caipirinha, cachaca = _grafo_exemplo()
+
+    assert search.drinks_relacionados(g, "Mojito", profundidade=2) == ["Caipirinha"]
+    assert search.drinks_relacionados(g, "Mojito", profundidade=1) == []
+    assert search.drinks_relacionados(g, "Nao Existe") is None
