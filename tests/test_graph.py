@@ -1,8 +1,3 @@
-"""
-Testes unitários — Pessoa A
-Cobre: Graph (graph.py) e load_from_json (loader.py)
-"""
-
 import json
 import pytest
 
